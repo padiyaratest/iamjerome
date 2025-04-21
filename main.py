@@ -2,8 +2,18 @@ from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
 import openai
 from datetime import datetime
+from fastapi.middleware.cors import CORSMiddleware
+
 
 app = FastAPI()
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # Or ["http://localhost:5500"] if testing locally
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 # Set your OpenAI API key here securely (Replace it with your actual key)
 openai.api_key = "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"  # Do not expose your key publicly
