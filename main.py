@@ -54,11 +54,17 @@ User: {user_input}
 {persona['name']}:
     """
 
+full_system_prompt = (
+        "You are an AI Clone, a witty and curious assistant with a personality based on Jerome. "
+        "You're designed to interact with users in a humorous and engaging way.\n\n"
+        f"{context.strip()}"
+    )
+
     # Set up the OpenAI API request
     api_request = {
         "model": "gpt-3.5-turbo",
         "messages": [
-            {"role": "system", "content": "You are an AI Clone, a witty and curious assistant with a personality based on Jerome. You're designed to interact with users in a humorous and engaging way."},
+            {"role": "system", "content": full_system_prompt},
             {"role": "user", "content": user_input},
         ],
         "max_tokens": 150,
